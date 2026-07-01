@@ -9,7 +9,14 @@ class SimilarityChecker:
         self.word1 : str = word1
         self.word2 : str = word2
 
+    def are_valid_words(self):
+        return len(self.word1) > 0 and len(self.word2) > 0
+
     def get_length_similarity(self) -> float:
+
+        if not self.are_valid_words():
+            raise ValueError("문자열은 빈칸이 될 수 없습니다")
+
         _word1_length = len(self.word1)
         _word2_length = len(self.word2)
 
@@ -29,4 +36,8 @@ class SimilarityChecker:
         return len(total_letters)
 
     def get_alpha_similarity(self):
+
+        if not self.are_valid_words():
+            raise ValueError("문자열은 빈칸이 될 수 없습니다")
+
         return round(self.same_letters_cnt / self.total_letters_cnt * self.ALPHA_MULTIPLIER, 3)

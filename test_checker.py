@@ -24,3 +24,8 @@ def test_alpha(word1, word2, alpha_score):
 
     c = SimilarityChecker(word1, word2)
     assert c.get_alpha_similarity() == alpha_score
+
+def test_invalid_words():
+    with pytest.raises(ValueError):
+        sc = SimilarityChecker("", "")
+        sc.get_length_similarity()
